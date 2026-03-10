@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AdiCal – Free AI Tools, Calculators & Smart Utilities</title>
+<meta name="description" content="AdiCal – Free AI tools, calculators, and finance utilities in one place. Calculate EMI, generate AI content, and explore smart tools instantly."/>
+<meta name="keywords" content="AdiCal, AI tools, calculators, EMI calculator, GST calculator, age calculator, SIP calculator"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f5f7ff;color:#1a1f36;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#eef0f8}
+::-webkit-scrollbar-thumb{background:#4f7cff;border-radius:3px}
+
+/* VARIABLES — full light palette */
+:root{
+  --acc:#3b6ef5;
+  --acc2:#7c3aed;
+  --acc3:#059669;
+  --bg:#f5f7ff;
+  --s1:#ffffff;
+  --s2:#f0f3ff;
+  --s3:#e6eaff;
+  --bd:#d6dcf5;
+  --bd2:#c4ccee;
+  --glow:rgba(59,110,245,0.18);
+  --t1:#1a1f36;
+  --t2:#4a5378;
+  --t3:#8b93b8;
+  --shadow-sm:0 1px 4px rgba(30,40,100,0.07),0 2px 12px rgba(30,40,100,0.05);
+  --shadow-md:0 4px 16px rgba(30,40,100,0.1),0 2px 6px rgba(30,40,100,0.06);
+  --shadow-lg:0 8px 32px rgba(30,40,100,0.13),0 2px 8px rgba(30,40,100,0.07);
+}
+
+/* LAYOUT */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.section{padding:80px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+/* NAV */
+#nav{position:sticky;top:0;z-index:900;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);box-shadow:0 1px 12px rgba(30,40,100,0.06)}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1200px;margin:0 auto}
+.logo{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--t1)}
+.logo-box{width:32px;height:32px;background:linear-gradient(135deg,var(--acc),var(--acc2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.95rem}
+.logo em{color:var(--acc);font-style:normal}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--t2);font-size:0.88rem;font-weight:500;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--acc)}
+.nav-btn{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border:none;padding:8px 20px;border-radius:50px;font-size:0.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s,transform .2s,box-shadow .2s;box-shadow:0 2px 10px rgba(59,110,245,0.3)}
+.nav-btn:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 4px 16px rgba(59,110,245,0.4)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--t1);border-radius:2px;display:block;transition:.2s}
+.mob-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid var(--bd)}
+.mob-menu.open{display:flex}
+.mob-menu a{padding:13px 20px;color:var(--t2);font-size:0.9rem;text-decoration:none;border-bottom:1px solid var(--bd);transition:color .15s,background .15s}
+.mob-menu a:hover{color:var(--acc);background:var(--s2)}
+
+/* HERO */
+#hero{min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#eef1ff 0%,#f5f7ff 50%,#f0f8ff 100%)}
+.hero-glow{position:absolute;top:-5%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(59,110,245,0.1) 0%,transparent 65%);pointer-events:none}
+.hero-blob1{position:absolute;top:10%;right:5%;width:280px;height:280px;background:linear-gradient(135deg,rgba(59,110,245,0.1),rgba(124,58,237,0.08));border-radius:60% 40% 70% 30%/50% 60% 40% 50%;pointer-events:none;animation:blobFloat 8s ease-in-out infinite}
+.hero-blob2{position:absolute;bottom:15%;left:3%;width:200px;height:200px;background:linear-gradient(135deg,rgba(5,150,105,0.08),rgba(59,110,245,0.07));border-radius:40% 60% 30% 70%/60% 40% 60% 40%;pointer-events:none;animation:blobFloat 10s ease-in-out infinite reverse}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(59,110,245,0.12) 1.5px,transparent 1.5px);background-size:36px 36px;pointer-events:none;opacity:0.7}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(12px,-15px) rotate(5deg)}66%{transform:translate(-8px,8px) rotate(-3deg)}}
+.hero-inner{position:relative;z-index:2;text-align:center;width:100%;padding:40px 20px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(59,110,245,0.08);border:1px solid rgba(59,110,245,0.22);color:var(--acc);border-radius:50px;padding:5px 14px;font-size:0.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+.hero-inner h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,6vw,4.2rem);font-weight:800;line-height:1.1;margin-bottom:18px;color:var(--t1)}
+.hero-inner h1 .hl{background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:var(--t2);font-size:clamp(0.95rem,2vw,1.1rem);max-width:520px;margin:0 auto 32px}
+
+/* SEARCH */
+.search-wrap{max-width:580px;margin:0 auto 10px;position:relative}
+.search-input{width:100%;background:#fff;border:1.5px solid var(--bd2);border-radius:50px;padding:15px 55px 15px 22px;color:var(--t1);font-size:0.95rem;font-family:'Plus Jakarta Sans',sans-serif;transition:border-color .2s,box-shadow .2s;box-shadow:var(--shadow-sm)}
+.search-input:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(59,110,245,0.12),var(--shadow-sm)}
+.search-input::placeholder{color:var(--t3)}
+.search-icon{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none}
+.search-panel{max-width:580px;margin:0 auto 28px;background:#fff;border:1px solid var(--bd);border-radius:14px;overflow:hidden;display:none;box-shadow:var(--shadow-md)}
+.search-panel.show{display:block}
+.s-item{display:flex;align-items:center;gap:10px;padding:12px 18px;cursor:pointer;border-bottom:1px solid var(--bd);transition:background .15s}
+.s-item:last-child{border-bottom:none}
+.s-item:hover{background:var(--s2)}
+.s-item span{font-size:0.88rem;color:var(--t1)}
+.s-item small{margin-left:auto;color:var(--t3);font-size:0.78rem}
+.no-results{padding:16px;text-align:center;color:var(--t3);font-size:0.88rem;display:none}
+
+/* HERO BTNS */
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:50px}
+.btn-pri{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border:none;padding:13px 30px;border-radius:50px;font-size:0.95rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 18px rgba(59,110,245,0.35)}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(59,110,245,0.45)}
+.btn-out{background:#fff;color:var(--t2);border:1.5px solid var(--bd2);padding:12px 28px;border-radius:50px;font-size:0.95rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:border-color .2s,color .2s,box-shadow .2s;box-shadow:var(--shadow-sm)}
+.btn-out:hover{border-color:var(--acc);color:var(--acc);box-shadow:0 4px 12px rgba(59,110,245,0.12)}
+
+/* STATS */
+.hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center;padding:16px 24px;background:#fff;border-radius:14px;border:1px solid var(--bd);box-shadow:var(--shadow-sm)}
+.stat .num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--acc)}
+.stat .lbl{color:var(--t3);font-size:0.82rem}
+
+/* SECTION TITLES */
+.sec-head{margin-bottom:44px}
+.sec-head h2{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;margin-bottom:8px;color:var(--t1)}
+.sec-head p{color:var(--t2);font-size:0.95rem}
+.hl{background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hl3{background:linear-gradient(135deg,var(--acc3),var(--acc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* SECTION ALTERNATING BG */
+.section-alt{background:linear-gradient(180deg,#f0f3ff,#f5f7ff)}
+.section-alt2{background:linear-gradient(180deg,#f5f7ff,#eef6f3,#f5f7ff)}
+
+/* TOOL CARDS */
+.card{background:#fff;border:1.5px solid var(--bd);border-radius:18px;padding:26px;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;box-shadow:var(--shadow-sm)}
+.card:hover{border-color:#aab8f0;transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.card-ico{width:48px;height:48px;background:linear-gradient(135deg,rgba(59,110,245,0.1),rgba(124,58,237,0.08));border:1.5px solid rgba(59,110,245,0.18);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+.card h3{font-family:'Syne',sans-serif;font-size:0.98rem;font-weight:700;margin-bottom:6px;color:var(--t1)}
+.card .desc{color:var(--t3);font-size:0.82rem;margin-bottom:18px}
+
+/* INPUTS */
+.inp{width:100%;background:var(--s2);border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px;color:var(--t1);font-size:0.88rem;font-family:'Plus Jakarta Sans',sans-serif;transition:border-color .2s,box-shadow .2s;margin-bottom:10px;display:block}
+.inp:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(59,110,245,0.1)}
+.inp::placeholder{color:var(--t3)}
+select.inp{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238b93b8' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-color:var(--s2)}
+select.inp option{background:#fff;color:var(--t1)}
+.row{display:flex;gap:8px;margin-bottom:0}
+.row .inp{margin-bottom:0;flex:1}
+label.ilbl{color:var(--t3);font-size:0.78rem;display:block;margin-bottom:5px;font-weight:500}
+
+/* CALC BUTTON */
+.calc-btn{width:100%;padding:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border:none;border-radius:10px;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:opacity .15s,transform .15s,box-shadow .15s;margin-top:10px;display:block;box-shadow:0 2px 10px rgba(59,110,245,0.25)}
+.calc-btn:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 4px 16px rgba(59,110,245,0.38)}
+.calc-btn:active{transform:translateY(0);opacity:1;box-shadow:none}
+.calc-btn2{background:linear-gradient(135deg,var(--acc2),#0ea5e9)}
+
+/* RESULT BOX */
+.result{background:linear-gradient(135deg,#eef4ff,#f0fff8);border:1.5px solid #c8d9ff;border-radius:10px;padding:13px 15px;margin-top:12px;font-size:0.88rem;color:var(--acc3);display:none;word-break:break-word;line-height:1.7}
+.result.show{display:block}
+.result strong{color:var(--t1)}
+.result span{color:var(--t2)}
+
+/* RESULT HIGHLIGHT (finance) */
+.r-hi{background:linear-gradient(135deg,rgba(59,110,245,0.06),rgba(124,58,237,0.04));border:1.5px solid rgba(59,110,245,0.18);border-radius:12px;padding:16px;margin-top:12px;display:none}
+.r-hi.show{display:block}
+.r-hi .rv{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--acc)}
+.r-hi .rl{color:var(--t3);font-size:0.78rem;margin-bottom:4px}
+.r-hi .rs{color:var(--t2);font-size:0.8rem;margin-top:8px}
+
+/* AI RESULTS */
+.ai-list{background:var(--s2);border:1.5px solid var(--bd);border-radius:12px;padding:4px 0;margin-top:12px;display:none}
+.ai-list.show{display:block}
+.ai-item{padding:10px 14px;border-bottom:1px solid var(--bd);font-size:0.85rem;color:var(--t2);display:flex;gap:8px;align-items:flex-start;transition:background .15s}
+.ai-item:last-child{border-bottom:none}
+.ai-item:hover{background:var(--s3)}
+.ai-item .n{color:var(--acc);font-weight:700;font-size:0.8rem;flex-shrink:0;margin-top:2px}
+.ai-item .t{color:var(--t1);line-height:1.55}
+
+/* GST row */
+.gst-row{display:flex;gap:8px;margin-top:10px}
+.gst-row .calc-btn{margin-top:0;flex:1}
+
+/* ChatGPT Link Button */
+.chatgpt-link{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:9px 16px;background:linear-gradient(135deg,#10a37f,#1a7f64);color:#fff;border-radius:10px;font-size:0.83rem;font-weight:600;text-decoration:none;transition:opacity .15s,transform .15s,box-shadow .15s;box-shadow:0 2px 10px rgba(16,163,127,0.3);width:100%;justify-content:center}
+.chatgpt-link:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 4px 16px rgba(16,163,127,0.4)}
+
+/* BLOG CARDS */
+.blog-card{background:#fff;border:1.5px solid var(--bd);border-radius:18px;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s;box-shadow:var(--shadow-sm)}
+.blog-card:hover{transform:translateY(-4px);border-color:#aab8f0;box-shadow:var(--shadow-lg)}
+.blog-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.bi1{background:linear-gradient(135deg,#e8edff,#dce8ff)}
+.bi2{background:linear-gradient(135deg,#e8f5f0,#d9f0e8)}
+.bi3{background:linear-gradient(135deg,#f0e8ff,#ead9ff)}
+.blog-body{padding:20px}
+.tag{display:inline-block;background:rgba(59,110,245,0.08);color:var(--acc);border-radius:5px;padding:2px 9px;font-size:0.73rem;font-weight:600;margin-bottom:8px;border:1px solid rgba(59,110,245,0.15)}
+.blog-body h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:8px;line-height:1.45;color:var(--t1)}
+.blog-body p{color:var(--t3);font-size:0.82rem;margin-bottom:14px;line-height:1.6}
+.blog-meta{display:flex;align-items:center;justify-content:space-between}
+.blog-meta span{color:var(--t3);font-size:0.78rem}
+.rm{color:var(--acc);font-size:0.82rem;font-weight:600;text-decoration:none;cursor:pointer;transition:opacity .15s}
+.rm:hover{opacity:0.75;text-decoration:underline}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-vis{background:#fff;border:1.5px solid var(--bd);border-radius:18px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:14px;box-shadow:var(--shadow-sm)}
+.a-stat{background:var(--s2);border:1.5px solid var(--bd);border-radius:12px;padding:18px;text-align:center}
+.a-stat .n{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--acc)}
+.a-stat .l{color:var(--t3);font-size:0.78rem;margin-top:4px}
+.feat-list{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.feat-list li{display:flex;align-items:center;gap:10px;color:var(--t2);font-size:0.9rem}
+.feat-list li::before{content:'✦';color:var(--acc3);font-size:0.75rem;flex-shrink:0}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:52px;align-items:start}
+.c-info h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:10px;color:var(--t1)}
+.c-info p{color:var(--t2);font-size:0.9rem;margin-bottom:22px}
+.c-links{display:flex;flex-direction:column;gap:10px}
+.c-link{display:flex;align-items:center;gap:10px;padding:12px 15px;background:#fff;border:1.5px solid var(--bd);border-radius:10px;color:var(--t2);font-size:0.85rem;text-decoration:none;transition:border-color .2s,color .2s,box-shadow .2s;box-shadow:var(--shadow-sm)}
+.c-link:hover{border-color:var(--acc);color:var(--acc);box-shadow:0 4px 12px rgba(59,110,245,0.1)}
+.f-group{margin-bottom:14px}
+.f-label{display:block;color:var(--t2);font-size:0.8rem;font-weight:600;margin-bottom:6px}
+.f-control{width:100%;background:var(--s2);border:1.5px solid var(--bd);border-radius:10px;padding:11px 14px;color:var(--t1);font-size:0.9rem;font-family:'Plus Jakarta Sans',sans-serif;transition:border-color .2s,box-shadow .2s}
+.f-control:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(59,110,245,0.1)}
+.f-control::placeholder{color:var(--t3)}
+textarea.f-control{resize:vertical;min-height:110px}
+.f-err{color:#dc2626;font-size:0.78rem;margin-top:4px;display:none}
+.f-ok{background:rgba(5,150,105,0.07);border:1.5px solid rgba(5,150,105,0.25);color:var(--acc3);border-radius:10px;padding:12px 14px;font-size:0.88rem;margin-top:12px;display:none}
+.sub-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border:none;border-radius:10px;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:opacity .15s,transform .15s,box-shadow .15s;margin-top:4px;box-shadow:0 3px 14px rgba(59,110,245,0.3)}
+.sub-btn:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 6px 20px rgba(59,110,245,0.4)}
+.sub-btn:active{transform:translateY(0)}
+
+/* AD SLOTS */
+.ad-slot{background:linear-gradient(135deg,#f0f3ff,#f5f5ff);border:1.5px dashed #c8d0ee;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;position:relative}
+.ad-slot::before{content:'📣 ADSENSE AD SLOT';position:absolute;font-size:0.68rem;opacity:0.55}
+.ad-top{width:100%;height:80px;margin-bottom:8px}
+.ad-mid{width:100%;height:90px;margin:40px 0}
+.ad-ft{width:100%;height:75px;margin-bottom:36px}
+
+/* FOOTER */
+#footer{background:#fff;border-top:1.5px solid var(--bd);padding:52px 0 24px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.f-brand p{color:var(--t3);font-size:0.85rem;margin-top:10px;line-height:1.7;max-width:260px}
+.f-social{display:flex;gap:8px;margin-top:18px}
+.soc{width:34px;height:34px;background:var(--s2);border:1.5px solid var(--bd);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
+.soc:hover{background:var(--acc);border-color:var(--acc);transform:translateY(-2px)}
+.f-col h4{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;margin-bottom:14px;color:var(--t1)}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:7px}
+.f-links li a{color:var(--t3);font-size:0.82rem;text-decoration:none;transition:color .2s}
+.f-links li a:hover{color:var(--acc)}
+.f-bot{border-top:1px solid var(--bd);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.f-bot p{color:var(--t3);font-size:0.78rem}
+.f-bot-links{display:flex;gap:18px}
+.f-bot-links a{color:var(--t3);font-size:0.78rem;text-decoration:none;transition:color .2s}
+.f-bot-links a:hover{color:var(--acc)}
+
+/* SCROLL TOP */
+#stb{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:linear-gradient(135deg,var(--acc),var(--acc2));border-radius:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(59,110,245,0.35);transition:opacity .3s,transform .2s;opacity:0;pointer-events:none;z-index:800;border:none;font-size:1rem;color:#fff}
+#stb.show{opacity:1;pointer-events:auto}
+#stb:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(59,110,245,0.45)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none}.hamburger{display:flex}
+  .grid3{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .about-wrap,.contact-wrap{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .hero-stats{gap:14px}
+  .foot-grid{grid-template-columns:1fr}
+  .f-bot{flex-direction:column;align-items:flex-start}
+  .stat{padding:12px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="ad-top ad-slot" style="max-width:1200px;margin:0 auto"></div>
+  <div class="nav-wrap">
+    <a class="logo" href="#hero"><div class="logo-box">⚡</div>Adi<em>Cal</em></a>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#tools">Tools</a>
+      <a href="#ai">AI Tools</a>
+      <a href="#finance">Finance</a>
+      <a href="#blog">Tech Updates</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="#tools" class="nav-btn">Try Free Tools</a>
+      <div class="hamburger" id="hbg"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <div class="mob-menu" id="mobmenu">
+    <a href="#hero">Home</a><a href="#tools">Tools</a><a href="#ai">AI Tools</a>
+    <a href="#finance">Finance</a><a href="#blog">Tech Updates</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="badge">🚀 100+ Free Tools Available</div>
+    <h1>100+ Free <span class="hl">AI Tools</span><br/>& Smart Calculators</h1>
+    <p class="hero-sub">Calculate, Generate, and Solve Everything Instantly.<br/>Your all-in-one smart utility hub.</p>
+
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="srch" placeholder="Search any tool (Age Calculator, EMI, GST…)" oninput="doSearch(this.value)"/>
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="search-panel" id="spanel">
+      <div class="no-results" id="snone">No tools found. Try a different keyword.</div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#tools" class="btn-pri">⚡ Explore Tools</a>
+      <a href="#ai" class="btn-out">🤖 AI Generators →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">100+</div><div class="lbl">Free Tools</div></div>
+      <div class="stat"><div class="num">50K+</div><div class="lbl">Monthly Users</div></div>
+      <div class="stat"><div class="num">4.9★</div><div class="lbl">User Rating</div></div>
+      <div class="stat"><div class="num">100%</div><div class="lbl">Free Forever</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATORS -->
+<section id="tools" class="section">
+  <div class="container">
+    <div class="badge">🧮 Smart Calculators</div>
+    <div class="sec-head">
+      <h2>Essential <span class="hl">Calculators</span></h2>
+      <p>Instant, accurate calculations — no login, no signup, always free.</p>
+    </div>
+    <div class="grid3">
+
+      <!-- AGE -->
+      <div class="card">
+        <div class="card-ico">🎂</div>
+        <h3>Age Calculator</h3>
+        <p class="desc">Find exact age in years, months and days.</p>
+        <label class="ilbl">Date of Birth</label>
+        <input type="date" id="a-dob" class="inp"/>
+        <button class="calc-btn" onclick="calcAge()">Calculate Age</button>
+        <div class="result" id="a-res"></div>
+      </div>
+
+      <!-- EMI -->
+      <div class="card">
+        <div class="card-ico">🏦</div>
+        <h3>EMI Calculator</h3>
+        <p class="desc">Calculate monthly loan installments instantly.</p>
+        <input type="number" id="e-p" class="inp" placeholder="Loan Amount (₹)"/>
+        <div class="row">
+          <input type="number" id="e-r" class="inp" placeholder="Rate % (annual)"/>
+          <input type="number" id="e-t" class="inp" placeholder="Tenure (months)"/>
+        </div>
+        <button class="calc-btn" onclick="calcEMI()">Calculate EMI</button>
+        <div class="result" id="e-res"></div>
+      </div>
+
+      <!-- PERCENTAGE -->
+      <div class="card">
+        <div class="card-ico">📊</div>
+        <h3>Percentage Calculator</h3>
+        <p class="desc">Find percentage of a value or percentage change.</p>
+        <input type="number" id="p-val" class="inp" placeholder="Value"/>
+        <input type="number" id="p-tot" class="inp" placeholder="Total (for X% of Total)"/>
+        <input type="number" id="p-pct" class="inp" placeholder="OR: Enter % to get amount"/>
+        <button class="calc-btn" onclick="calcPct()">Calculate</button>
+        <div class="result" id="p-res"></div>
+      </div>
+
+      <!-- GST -->
+      <div class="card">
+        <div class="card-ico">🧾</div>
+        <h3>GST Calculator</h3>
+        <p class="desc">Add or remove GST for any tax slab.</p>
+        <input type="number" id="g-amt" class="inp" placeholder="Enter Amount (₹)"/>
+        <select id="g-rate" class="inp">
+          <option value="5">5% GST</option>
+          <option value="12">12% GST</option>
+          <option value="18" selected>18% GST</option>
+          <option value="28">28% GST</option>
+        </select>
+        <div class="gst-row">
+          <button class="calc-btn" onclick="calcGST('add')">+ Add GST</button>
+          <button class="calc-btn calc-btn2" onclick="calcGST('remove')">− Remove GST</button>
+        </div>
+        <div class="result" id="g-res"></div>
+      </div>
+
+      <!-- PROFIT & LOSS -->
+      <div class="card">
+        <div class="card-ico">📈</div>
+        <h3>Profit & Loss Calculator</h3>
+        <p class="desc">Calculate profit or loss and percentage.</p>
+        <input type="number" id="pl-cp" class="inp" placeholder="Cost Price (₹)"/>
+        <input type="number" id="pl-sp" class="inp" placeholder="Selling Price (₹)"/>
+        <button class="calc-btn" onclick="calcPL()">Calculate</button>
+        <div class="result" id="pl-res"></div>
+      </div>
+
+      <!-- DISCOUNT -->
+      <div class="card">
+        <div class="card-ico">🏷️</div>
+        <h3>Discount Calculator</h3>
+        <p class="desc">Find final price and savings after discount.</p>
+        <input type="number" id="d-price" class="inp" placeholder="Original Price (₹)"/>
+        <input type="number" id="d-pct" class="inp" placeholder="Discount %"/>
+        <button class="calc-btn" onclick="calcDisc()">Calculate Savings</button>
+        <div class="result" id="d-res"></div>
+      </div>
+
+      <!-- TIME DURATION -->
+      <div class="card">
+        <div class="card-ico">⏱️</div>
+        <h3>Time Duration Calculator</h3>
+        <p class="desc">Find duration between two dates & times.</p>
+        <label class="ilbl">Start Date & Time</label>
+        <input type="datetime-local" id="t-s" class="inp"/>
+        <label class="ilbl">End Date & Time</label>
+        <input type="datetime-local" id="t-e" class="inp"/>
+        <button class="calc-btn" onclick="calcTime()">Calculate Duration</button>
+        <div class="result" id="t-res"></div>
+      </div>
+
+      <!-- BMI -->
+      <div class="card">
+        <div class="card-ico">⚖️</div>
+        <h3>BMI Calculator</h3>
+        <p class="desc">Check your Body Mass Index and weight status.</p>
+        <input type="number" id="b-w" class="inp" placeholder="Weight (kg)"/>
+        <input type="number" id="b-h" class="inp" placeholder="Height (cm)"/>
+        <button class="calc-btn" onclick="calcBMI()">Calculate BMI</button>
+        <div class="result" id="b-res"></div>
+      </div>
+
+      <!-- SIMPLE INTEREST -->
+      <div class="card">
+        <div class="card-ico">💰</div>
+        <h3>Simple Interest Calculator</h3>
+        <p class="desc">Calculate SI for any principal, rate and time.</p>
+        <input type="number" id="si-p" class="inp" placeholder="Principal (₹)"/>
+        <div class="row">
+          <input type="number" id="si-r" class="inp" placeholder="Rate %"/>
+          <input type="number" id="si-t" class="inp" placeholder="Time (years)"/>
+        </div>
+        <button class="calc-btn" onclick="calcSI()">Calculate Interest</button>
+        <div class="result" id="si-res"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AD MID -->
+<div class="container"><div class="ad-slot ad-mid"></div></div>
+
+<!-- AI TOOLS -->
+<section id="ai" class="section">
+  <div class="container">
+    <div class="badge">🤖 AI Generators</div>
+    <div class="sec-head">
+      <h2>AI-Powered <span class="hl">Content Generators</span></h2>
+      <p>Smart generators for titles, names, captions and prompts — powered by built-in AI logic.</p>
+    </div>
+    <div class="grid2">
+
+      <!-- YT TITLES -->
+      <div class="card">
+        <div class="card-ico">🎬</div>
+        <h3>AI YouTube Title Generator</h3>
+        <p class="desc">Enter your video topic, get 5 click-worthy titles, then open in ChatGPT for more ideas.</p>
+        <input type="text" id="yt-t" class="inp" placeholder="e.g. How to learn Python fast"/>
+        <button class="calc-btn" onclick="genYT()">Generate Titles ✨</button>
+        <div class="ai-list" id="yt-res"></div>
+        <a id="yt-gpt-btn" href="#" target="_blank" rel="noopener" class="chatgpt-link" style="display:none">
+          <span>🤖</span> Refine with ChatGPT →
+        </a>
+      </div>
+
+      <!-- BUSINESS NAMES -->
+      <div class="card">
+        <div class="card-ico">🏢</div>
+        <h3>AI Business Name Generator</h3>
+        <p class="desc">Describe your business, get brand name ideas, then explore more on ChatGPT.</p>
+        <input type="text" id="bn-t" class="inp" placeholder="e.g. organic food delivery"/>
+        <button class="calc-btn" onclick="genBN()">Generate Names ✨</button>
+        <div class="ai-list" id="bn-res"></div>
+        <a id="bn-gpt-btn" href="#" target="_blank" rel="noopener" class="chatgpt-link" style="display:none">
+          <span>🤖</span> Explore more on ChatGPT →
+        </a>
+      </div>
+
+      <!-- CAPTIONS -->
+      <div class="card">
+        <div class="card-ico">✍️</div>
+        <h3>AI Caption Generator</h3>
+        <p class="desc">Generate social media captions for any topic, then customise them on ChatGPT.</p>
+        <input type="text" id="cap-t" class="inp" placeholder="e.g. sunset at the beach"/>
+        <select id="cap-m" class="inp">
+          <option value="funny">😄 Funny</option>
+          <option value="motivational">💪 Motivational</option>
+          <option value="aesthetic">🌸 Aesthetic</option>
+          <option value="professional">💼 Professional</option>
+        </select>
+        <button class="calc-btn" onclick="genCap()">Generate Captions ✨</button>
+        <div class="ai-list" id="cap-res"></div>
+        <a id="cap-gpt-btn" href="#" target="_blank" rel="noopener" class="chatgpt-link" style="display:none">
+          <span>🤖</span> Customise on ChatGPT →
+        </a>
+      </div>
+
+      <!-- PROMPTS -->
+      <div class="card">
+        <div class="card-ico">🧠</div>
+        <h3>AI Prompt Generator</h3>
+        <p class="desc">Generate powerful prompts for ChatGPT, Midjourney or any AI tool.</p>
+        <input type="text" id="pr-t" class="inp" placeholder="e.g. logo for a coffee brand"/>
+        <select id="pr-m" class="inp">
+          <option value="chatgpt">💬 ChatGPT Prompt</option>
+          <option value="image">🎨 Image AI Prompt</option>
+          <option value="writing">📝 Writing Prompt</option>
+        </select>
+        <button class="calc-btn" onclick="genPR()">Generate Prompts ✨</button>
+        <div class="ai-list" id="pr-res"></div>
+        <a id="pr-gpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener" class="chatgpt-link" style="display:none">
+          <span>🤖</span> Use this prompt on ChatGPT →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE -->
+<section id="finance" class="section section-alt2">
+  <div class="container">
+    <div class="badge">💹 Finance Tools</div>
+    <div class="sec-head">
+      <h2>Smart <span class="hl3">Finance Calculators</span></h2>
+      <p>Plan investments, loans, and salary with precision.</p>
+    </div>
+    <div class="grid3">
+
+      <!-- SIP -->
+      <div class="card">
+        <div class="card-ico">📊</div>
+        <h3>SIP Calculator</h3>
+        <p class="desc">Calculate mutual fund SIP returns with compound interest.</p>
+        <input type="number" id="sip-m" class="inp" placeholder="Monthly Investment (₹)"/>
+        <input type="number" id="sip-r" class="inp" placeholder="Expected Annual Return %"/>
+        <input type="number" id="sip-y" class="inp" placeholder="Investment Period (years)"/>
+        <button class="calc-btn" onclick="calcSIP()">Calculate Returns</button>
+        <div class="r-hi" id="sip-res">
+          <div class="rl">Maturity Value</div>
+          <div class="rv" id="sip-val">—</div>
+          <div class="rs">Invested: <strong id="sip-inv" style="color:var(--t1)">—</strong> &nbsp;|&nbsp; Profit: <strong id="sip-pro" style="color:var(--acc3)">—</strong></div>
+        </div>
+      </div>
+
+      <!-- LOAN -->
+      <div class="card">
+        <div class="card-ico">🏠</div>
+        <h3>Loan Calculator</h3>
+        <p class="desc">Calculate monthly EMI and total interest on any loan.</p>
+        <input type="number" id="ln-a" class="inp" placeholder="Loan Amount (₹)"/>
+        <input type="number" id="ln-r" class="inp" placeholder="Annual Interest Rate %"/>
+        <input type="number" id="ln-y" class="inp" placeholder="Loan Tenure (years)"/>
+        <button class="calc-btn" onclick="calcLoan()">Calculate Repayment</button>
+        <div class="r-hi" id="ln-res">
+          <div class="rl">Monthly EMI</div>
+          <div class="rv" id="ln-emi">—</div>
+          <div class="rs">Total: <strong id="ln-tot" style="color:var(--t1)">—</strong> &nbsp;|&nbsp; Interest: <strong id="ln-int" style="color:#c2410c">—</strong></div>
+        </div>
+      </div>
+
+      <!-- TAX -->
+      <div class="card">
+        <div class="card-ico">💼</div>
+        <h3>Salary Tax Estimator</h3>
+        <p class="desc">Estimate annual income tax as per Indian tax slabs.</p>
+        <input type="number" id="tx-s" class="inp" placeholder="Annual CTC (₹)"/>
+        <select id="tx-r" class="inp">
+          <option value="new">New Tax Regime (FY 2024-25)</option>
+          <option value="old">Old Tax Regime</option>
+        </select>
+        <button class="calc-btn" onclick="calcTax()">Estimate Tax</button>
+        <div class="r-hi" id="tx-res">
+          <div class="rl">Estimated Annual Tax</div>
+          <div class="rv" id="tx-val">—</div>
+          <div class="rs">Net Take-Home: <strong id="tx-net" style="color:var(--acc3)">—</strong> &nbsp;|&nbsp; Eff. Rate: <strong id="tx-eff" style="color:var(--t2)">—</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section">
+  <div class="container">
+    <div class="badge">📰 Tech Updates</div>
+    <div class="sec-head">
+      <h2>Latest <span class="hl">Tech Insights</span></h2>
+      <p>Stay updated with the latest in AI, technology and digital tools.</p>
+    </div>
+    <div class="ad-slot" style="height:80px;margin-bottom:36px"></div>
+    <div class="grid3">
+
+      <!-- Blog 1: AI Tools 2026 → TechCrunch AI -->
+      <div class="blog-card">
+        <div class="blog-img bi1">🤖</div>
+        <div class="blog-body">
+          <span class="tag">AI</span>
+          <h3>Top 10 AI Tools Dominating 2026</h3>
+          <p>From ChatGPT to Gemini, discover which AI tools are transforming productivity this year.</p>
+          <div class="blog-meta">
+            <span>TechCrunch · Mar 2026</span>
+            <a href="https://techcrunch.com/category/artificial-intelligence/" target="_blank" rel="noopener" class="rm">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog 2: Free Calculators → MakeUseOf -->
+      <div class="blog-card">
+        <div class="blog-img bi2">🧮</div>
+        <div class="blog-body">
+          <span class="tag">Tools</span>
+          <h3>Best Free Calculators Online in 2026</h3>
+          <p>Explore the most accurate free calculators for finance, math, health and everyday use.</p>
+          <div class="blog-meta">
+            <span>MakeUseOf · Feb 2026</span>
+            <a href="https://www.makeuseof.com/tag/best-online-calculators/" target="_blank" rel="noopener" class="rm">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog 3: Future of AI → MIT Technology Review -->
+      <div class="blog-card">
+        <div class="blog-img bi3">🚀</div>
+        <div class="blog-body">
+          <span class="tag">Future</span>
+          <h3>The Future of Artificial Intelligence</h3>
+          <p>AGI, multimodal AI and autonomous agents are reshaping the world. Here's what's next.</p>
+          <div class="blog-meta">
+            <span>MIT Tech Review · Jan 2026</span>
+            <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener" class="rm">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog 4: SIP & Investing → Investopedia -->
+      <div class="blog-card">
+        <div class="blog-img bi1">💰</div>
+        <div class="blog-body">
+          <span class="tag">Finance</span>
+          <h3>How to Use SIP for Wealth Building</h3>
+          <p>A step-by-step guide to SIP calculators for long-term wealth creation via mutual funds.</p>
+          <div class="blog-meta">
+            <span>Investopedia · Mar 2026</span>
+            <a href="https://www.investopedia.com/systematic-investment-plan-sip-4702725" target="_blank" rel="noopener" class="rm">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog 5: Freelancer Tools → The Verge -->
+      <div class="blog-card">
+        <div class="blog-img bi2">📱</div>
+        <div class="blog-body">
+          <span class="tag">Productivity</span>
+          <h3>10 Online Tools Every Freelancer Needs</h3>
+          <p>These 10 essential online tools will supercharge your freelance workflow in 2026.</p>
+          <div class="blog-meta">
+            <span>The Verge · Feb 2026</span>
+            <a href="https://www.theverge.com/tech" target="_blank" rel="noopener" class="rm">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog 6: AI & Cybersecurity → Wired -->
+      <div class="blog-card">
+        <div class="blog-img bi3">🔐</div>
+        <div class="blog-body">
+          <span class="tag">Security</span>
+          <h3>AI & Cybersecurity: What You Need to Know</h3>
+          <p>AI is both a cybersecurity weapon and potential risk. Learn how to stay protected.</p>
+          <div class="blog-meta">
+            <span>Wired · Jan 2026</span>
+            <a href="https://www.wired.com/category/security/" target="_blank" rel="noopener" class="rm">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section section-alt">
+  <div class="container">
+    <div class="about-wrap">
+      <div>
+        <div class="badge">✦ About Us</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;margin-bottom:14px;color:var(--t1)">Your Ultimate <span class="hl">Digital Utility Hub</span></h2>
+        <p style="color:var(--t2);font-size:0.93rem;line-height:1.8;margin-bottom:14px">AdiCal is built for students, professionals, entrepreneurs, and everyday users who need fast, accurate, and free tools — no signup required.</p>
+        <p style="color:var(--t2);font-size:0.93rem;line-height:1.8">We believe powerful tools should be accessible to everyone. Everything runs entirely in your browser — private, instant, and always free.</p>
+        <ul class="feat-list">
+          <li>100+ free tools across 10+ categories</li>
+          <li>AI-powered generators with smart built-in logic</li>
+          <li>Accurate financial calculators for India & global users</li>
+          <li>No signup, no data collection, completely private</li>
+          <li>Lightning-fast, works on all devices</li>
+          <li>New tools added every month</li>
+        </ul>
+      </div>
+      <div class="about-vis">
+        <div class="a-stat"><div class="n">100+</div><div class="l">Free Tools</div></div>
+        <div class="a-stat"><div class="n">10+</div><div class="l">Categories</div></div>
+        <div class="a-stat"><div class="n">50K+</div><div class="l">Monthly Users</div></div>
+        <div class="a-stat"><div class="n">4.9★</div><div class="l">Avg Rating</div></div>
+        <div class="a-stat" style="grid-column:span 2;background:linear-gradient(135deg,rgba(59,110,245,0.07),rgba(124,58,237,0.05));border-color:rgba(59,110,245,0.2)">
+          <div class="n" style="font-size:2.4rem">⚡</div>
+          <div class="l" style="font-size:0.88rem;margin-top:6px;color:var(--t2)">Always Free. Always Fast. Always Accurate.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="badge">📬 Contact Us</div>
+    <div class="sec-head">
+      <h2>Get In <span class="hl">Touch</span></h2>
+      <p>Suggestions, bug reports, partnership enquiries — we'd love to hear from you.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="c-info">
+        <h3>Let's talk tools.</h3>
+        <p>Whether you want to request a new calculator, report an issue, or explore advertising on AdiCal, reach out anytime.</p>
+        <div class="c-links">
+          <a href="/cdn-cgi/l/email-protection#2e464b4242416e5f5b4f405a5b435a4141425d465b4c004d4143" class="c-link"><span>📧</span> <span class="__cf_email__" data-cfemail="670f020b0b08271612060913120a1308080b140f12054904080a">[email&#160;protected]</span></a>
+          <a href="#" class="c-link"><span>🐦</span> @AdiCalOfficial</a>
+          <a href="#" class="c-link"><span>💼</span> linkedin.com/company/adicalhub</a>
+          <a href="#" class="c-link"><span>📢</span> Advertise with us</a>
+        </div>
+      </div>
+      <div class="card" style="padding:28px">
+        <div class="f-group">
+          <label class="f-label">Your Name *</label>
+          <input type="text" id="c-name" class="f-control" placeholder="John Doe"/>
+          <div class="f-err" id="c-nerr">Please enter your name.</div>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Email Address *</label>
+          <input type="email" id="c-email" class="f-control" placeholder="john@example.com"/>
+          <div class="f-err" id="c-eerr">Please enter a valid email address.</div>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Message *</label>
+          <textarea id="c-msg" class="f-control" placeholder="Tell us what you need or suggest a new tool…"></textarea>
+          <div class="f-err" id="c-merr">Please write a message (minimum 10 characters).</div>
+        </div>
+        <button class="sub-btn" onclick="submitForm()">Send Message 🚀</button>
+        <div class="f-ok" id="c-ok">✅ Thank you! We'll get back to you within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="ad-slot ad-ft"></div>
+    <div class="foot-grid">
+      <div class="f-brand">
+        <div class="logo" style="font-size:1.1rem"><div class="logo-box">⚡</div>Adi<em style="color:var(--acc);font-style:normal">Cal</em></div>
+        <p>All AI Tools, Calculators & Smart Utilities in One Place. Free, fast and always accurate.</p>
+        <div class="f-social">
+          <div class="soc">🐦</div><div class="soc">📸</div><div class="soc">▶️</div><div class="soc">💼</div><div class="soc">✈️</div>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Calculators</h4>
+        <ul class="f-links">
+          <li><a href="#tools">Age Calculator</a></li>
+          <li><a href="#tools">EMI Calculator</a></li>
+          <li><a href="#tools">GST Calculator</a></li>
+          <li><a href="#tools">Percentage Calculator</a></li>
+          <li><a href="#tools">BMI Calculator</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>AI Tools</h4>
+        <ul class="f-links">
+          <li><a href="#ai">YouTube Title Generator</a></li>
+          <li><a href="#ai">Business Name Generator</a></li>
+          <li><a href="#ai">Caption Generator</a></li>
+          <li><a href="#ai">Prompt Generator</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Company</h4>
+        <ul class="f-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Advertise</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bot">
+      <p>© 2026 AdiCal. All rights reserved. Made with ❤️ for the web.</p>
+      <div class="f-bot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ================================================================
+// NAVIGATION
+// ================================================================
+document.getElementById('hbg').addEventListener('click', function(){
+  document.getElementById('mobmenu').classList.toggle('open');
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('#mobmenu a').forEach(function(a){
+  a.addEventListener('click', function(){ document.getElementById('mobmenu').classList.remove('open'); });
+});
+
+// Scroll to top button
+window.addEventListener('scroll', function(){
+  var b = document.getElementById('stb');
+  if(window.scrollY > 400){ b.classList.add('show'); } else { b.classList.remove('show'); }
+});
+
+// ================================================================
+// TOOL SEARCH
+// ================================================================
+var TOOLS = [
+  {name:'Age Calculator', sec:'#tools', cat:'Calculator', ico:'🎂'},
+  {name:'EMI Calculator', sec:'#tools', cat:'Calculator', ico:'🏦'},
+  {name:'Percentage Calculator', sec:'#tools', cat:'Calculator', ico:'📊'},
+  {name:'GST Calculator', sec:'#tools', cat:'Calculator', ico:'🧾'},
+  {name:'Profit & Loss Calculator', sec:'#tools', cat:'Calculator', ico:'📈'},
+  {name:'Discount Calculator', sec:'#tools', cat:'Calculator', ico:'🏷️'},
+  {name:'Time Duration Calculator', sec:'#tools', cat:'Calculator', ico:'⏱️'},
+  {name:'BMI Calculator', sec:'#tools', cat:'Calculator', ico:'⚖️'},
+  {name:'Simple Interest Calculator', sec:'#tools', cat:'Calculator', ico:'💰'},
+  {name:'YouTube Title Generator', sec:'#ai', cat:'AI Tool', ico:'🎬'},
+  {name:'Business Name Generator', sec:'#ai', cat:'AI Tool', ico:'🏢'},
+  {name:'Caption Generator', sec:'#ai', cat:'AI Tool', ico:'✍️'},
+  {name:'Prompt Generator', sec:'#ai', cat:'AI Tool', ico:'🧠'},
+  {name:'SIP Calculator', sec:'#finance', cat:'Finance', ico:'📊'},
+  {name:'Loan Calculator', sec:'#finance', cat:'Finance', ico:'🏠'},
+  {name:'Salary Tax Estimator', sec:'#finance', cat:'Finance', ico:'💼'}
+];
+
+function doSearch(q){
+  var panel = document.getElementById('spanel');
+  var none = document.getElementById('snone');
+  q = q.trim().toLowerCase();
+  // Remove previous results
+  var old = panel.querySelectorAll('.s-item');
+  old.forEach(function(e){ e.remove(); });
+  none.style.display = 'none';
+  if(!q){ panel.classList.remove('show'); return; }
+  var hits = TOOLS.filter(function(t){ return t.name.toLowerCase().indexOf(q) >= 0 || t.cat.toLowerCase().indexOf(q) >= 0; });
+  panel.classList.add('show');
+  if(!hits.length){ none.style.display = 'block'; return; }
+  hits.forEach(function(tool){
+    var div = document.createElement('div');
+    div.className = 's-item';
+    div.innerHTML = '<span style="font-size:1.2rem">'+tool.ico+'</span><span>'+tool.name+'</span><small>'+tool.cat+'</small>';
+    div.addEventListener('click', function(){
+      var el = document.querySelector(tool.sec);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+      panel.classList.remove('show');
+      document.getElementById('srch').value = '';
+    });
+    panel.insertBefore(div, none);
+  });
+}
+
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.search-wrap') && !e.target.closest('#spanel')){
+    document.getElementById('spanel').classList.remove('show');
+  }
+});
+
+// ================================================================
+// HELPERS
+// ================================================================
+function fmt(n){
+  return '₹' + Number(n).toLocaleString('en-IN', {maximumFractionDigits:2});
+}
+function show(id, html){
+  var el = document.getElementById(id);
+  el.innerHTML = html;
+  el.classList.add('show');
+}
+function err(id, msg){
+  show(id, '⚠️ ' + msg);
+}
+
+// ================================================================
+// CALCULATORS
+// ================================================================
+
+// AGE CALCULATOR
+function calcAge(){
+  var dob = document.getElementById('a-dob').value;
+  if(!dob){ err('a-res','Please select your date of birth.'); return; }
+  var birth = new Date(dob), now = new Date();
+  if(birth > now){ err('a-res','Date of birth cannot be in the future.'); return; }
+  var y = now.getFullYear() - birth.getFullYear();
+  var m = now.getMonth() - birth.getMonth();
+  var d = now.getDate() - birth.getDate();
+  if(d < 0){ m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if(m < 0){ y--; m += 12; }
+  var total = Math.floor((now - birth) / 86400000);
+  show('a-res', '🎂 Age: <strong>'+y+' years, '+m+' months, '+d+' days</strong><br><span style="color:var(--t3);font-size:0.8rem">Total days lived: '+total.toLocaleString()+'</span>');
+}
+
+// EMI CALCULATOR
+function calcEMI(){
+  var P = parseFloat(document.getElementById('e-p').value);
+  var r = parseFloat(document.getElementById('e-r').value) / 12 / 100;
+  var n = parseInt(document.getElementById('e-t').value);
+  if(!P || P<=0 || !r || r<=0 || !n || n<=0){ err('e-res','Please fill all fields with valid values.'); return; }
+  var emi = (P * r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
+  var total = emi * n, interest = total - P;
+  show('e-res', '💳 Monthly EMI: <strong>'+fmt(emi)+'</strong><br><span style="color:var(--t3);font-size:0.8rem">Total Payment: '+fmt(total)+' | Interest Payable: '+fmt(interest)+'</span>');
+}
+
+// PERCENTAGE CALCULATOR
+function calcPct(){
+  var val = parseFloat(document.getElementById('p-val').value);
+  var tot = parseFloat(document.getElementById('p-tot').value);
+  var pct = parseFloat(document.getElementById('p-pct').value);
+  if(!isNaN(val) && !isNaN(tot) && tot > 0){
+    show('p-res', '📊 <strong>'+val+'</strong> is <strong>'+(val/tot*100).toFixed(2)+'%</strong> of <strong>'+tot+'</strong>');
+  } else if(!isNaN(pct) && !isNaN(tot) && tot > 0){
+    show('p-res', '📊 <strong>'+pct+'%</strong> of <strong>'+tot+'</strong> = <strong>'+(pct/100*tot).toFixed(2)+'</strong>');
+  } else if(!isNaN(val) && !isNaN(pct)){
+    show('p-res', '📊 <strong>'+pct+'%</strong> of <strong>'+val+'</strong> = <strong>'+(val*pct/100).toFixed(2)+'</strong>');
+  } else {
+    err('p-res', 'Enter at least two values to calculate.');
+  }
+}
+
+// GST CALCULATOR
+function calcGST(type){
+  var amt = parseFloat(document.getElementById('g-amt').value);
+  var rate = parseFloat(document.getElementById('g-rate').value);
+  if(!amt || amt <= 0){ err('g-res','Please enter a valid amount.'); return; }
+  if(type === 'add'){
+    var gst = amt * rate / 100, total = amt + gst;
+    show('g-res', '🧾 GST ('+rate+'%): <strong>'+fmt(gst)+'</strong><br>Total with GST: <strong>'+fmt(total)+'</strong>');
+  } else {
+    var orig = amt / (1 + rate/100), gstAmt = amt - orig;
+    show('g-res', '🧾 Price ex-GST: <strong>'+fmt(orig)+'</strong><br>GST Amount ('+rate+'%): <strong>'+fmt(gstAmt)+'</strong>');
+  }
+}
+
+// PROFIT & LOSS
+function calcPL(){
+  var cp = parseFloat(document.getElementById('pl-cp').value);
+  var sp = parseFloat(document.getElementById('pl-sp').value);
+  if(!cp || cp<=0 || !sp || sp<=0){ err('pl-res','Please enter both cost and selling price.'); return; }
+  if(sp > cp){
+    var profit = sp - cp, pct = (profit/cp*100).toFixed(2);
+    show('pl-res', '📈 Profit: <strong style="color:var(--acc3)">'+fmt(profit)+'</strong> ('+pct+'% profit)');
+  } else if(sp < cp){
+    var loss = cp - sp, lpct = (loss/cp*100).toFixed(2);
+    show('pl-res', '📉 Loss: <strong style="color:#ff6b6b">'+fmt(loss)+'</strong> ('+lpct+'% loss)');
+  } else {
+    show('pl-res', '⚖️ <strong>Break Even</strong> — No Profit, No Loss.');
+  }
+}
+
+// DISCOUNT CALCULATOR
+function calcDisc(){
+  var price = parseFloat(document.getElementById('d-price').value);
+  var pct = parseFloat(document.getElementById('d-pct').value);
+  if(!price || price<=0 || isNaN(pct) || pct<0 || pct>100){ err('d-res','Please enter valid price and discount %.'); return; }
+  var savings = price * pct / 100, final = price - savings;
+  show('d-res', '🏷️ Final Price: <strong>'+fmt(final)+'</strong><br><span style="color:var(--acc3)">You save '+fmt(savings)+' ('+pct+'% off)</span>');
+}
+
+// TIME DURATION
+function calcTime(){
+  var s = new Date(document.getElementById('t-s').value);
+  var e = new Date(document.getElementById('t-e').value);
+  if(isNaN(s.getTime()) || isNaN(e.getTime())){ err('t-res','Please select both start and end date/time.'); return; }
+  if(e < s){ err('t-res','End date must be after start date.'); return; }
+  var diff = e - s;
+  var days = Math.floor(diff/86400000), hrs = Math.floor((diff%86400000)/3600000), mins = Math.floor((diff%3600000)/60000);
+  show('t-res', '⏱️ Duration: <strong>'+days+'d '+hrs+'h '+mins+'m</strong><br><span style="color:var(--t3);font-size:0.8rem">Total hours: '+(diff/3600000).toFixed(1)+' | Total minutes: '+Math.floor(diff/60000).toLocaleString()+'</span>');
+}
+
+// BMI CALCULATOR
+function calcBMI(){
+  var w = parseFloat(document.getElementById('b-w').value);
+  var h = parseFloat(document.getElementById('b-h').value) / 100;
+  if(!w || w<=0 || !h || h<=0){ err('b-res','Please enter valid weight and height.'); return; }
+  var bmi = (w / (h*h)).toFixed(1);
+  var cat, col;
+  if(bmi < 18.5){ cat='Underweight'; col='#64b5f6'; }
+  else if(bmi < 25){ cat='Normal Weight ✅'; col='var(--acc3)'; }
+  else if(bmi < 30){ cat='Overweight ⚠️'; col='#ffb74d'; }
+  else { cat='Obese ❗'; col='#ff6b6b'; }
+  show('b-res', '⚖️ BMI: <strong>'+bmi+'</strong> — <strong style="color:'+col+'">'+cat+'</strong>');
+}
+
+// SIMPLE INTEREST
+function calcSI(){
+  var P = parseFloat(document.getElementById('si-p').value);
+  var R = parseFloat(document.getElementById('si-r').value);
+  var T = parseFloat(document.getElementById('si-t').value);
+  if(!P || P<=0 || !R || R<=0 || !T || T<=0){ err('si-res','Please fill all fields with valid values.'); return; }
+  var si = (P * R * T) / 100, total = P + si;
+  show('si-res', '💰 Simple Interest: <strong>'+fmt(si)+'</strong><br><span style="color:var(--t3);font-size:0.8rem">Total Amount: '+fmt(total)+'</span>');
+}
+
+// ================================================================
+// FINANCE CALCULATORS
+// ================================================================
+
+// SIP
+function calcSIP(){
+  var monthly = parseFloat(document.getElementById('sip-m').value);
+  var rate = parseFloat(document.getElementById('sip-r').value) / 12 / 100;
+  var n = parseInt(document.getElementById('sip-y').value) * 12;
+  var el = document.getElementById('sip-res');
+  el.classList.add('show');
+  if(!monthly || monthly<=0 || !rate || rate<=0 || !n || n<=0){
+    document.getElementById('sip-val').textContent = '⚠️ Fill all fields';
+    document.getElementById('sip-inv').textContent = '—';
+    document.getElementById('sip-pro').textContent = '—';
+    return;
+  }
+  var mat = monthly * ((Math.pow(1+rate,n)-1)/rate) * (1+rate);
+  var inv = monthly * n, pro = mat - inv;
+  document.getElementById('sip-val').textContent = fmt(mat);
+  document.getElementById('sip-inv').textContent = fmt(inv);
+  document.getElementById('sip-pro').textContent = fmt(pro);
+}
+
+// LOAN
+function calcLoan(){
+  var P = parseFloat(document.getElementById('ln-a').value);
+  var r = parseFloat(document.getElementById('ln-r').value) / 12 / 100;
+  var n = parseInt(document.getElementById('ln-y').value) * 12;
+  var el = document.getElementById('ln-res');
+  el.classList.add('show');
+  if(!P || P<=0 || !r || r<=0 || !n || n<=0){
+    document.getElementById('ln-emi').textContent = '⚠️ Fill all fields';
+    document.getElementById('ln-tot').textContent = '—';
+    document.getElementById('ln-int').textContent = '—';
+    return;
+  }
+  var emi = (P * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+  var total = emi * n, interest = total - P;
+  document.getElementById('ln-emi').textContent = fmt(emi);
+  document.getElementById('ln-tot').textContent = fmt(total);
+  document.getElementById('ln-int').textContent = fmt(interest);
+}
+
+// TAX
+function calcTax(){
+  var salary = parseFloat(document.getElementById('tx-s').value);
+  var regime = document.getElementById('tx-r').value;
+  var el = document.getElementById('tx-res');
+  el.classList.add('show');
+  if(!salary || salary<=0){
+    document.getElementById('tx-val').textContent = '⚠️ Enter a valid salary';
+    document.getElementById('tx-net').textContent = '—';
+    document.getElementById('tx-eff').textContent = '—';
+    return;
+  }
+  var tax = 0;
+  if(regime === 'new'){
+    var taxable = salary - 75000;
+    if(taxable <= 300000) tax = 0;
+    else if(taxable <= 700000) tax = (taxable-300000)*0.05;
+    else if(taxable <= 1000000) tax = 20000+(taxable-700000)*0.10;
+    else if(taxable <= 1200000) tax = 50000+(taxable-1000000)*0.15;
+    else if(taxable <= 1500000) tax = 80000+(taxable-1200000)*0.20;
+    else tax = 140000+(taxable-1500000)*0.30;
+    if(taxable <= 700000) tax = 0;
+  } else {
+    var taxable2 = salary - 50000;
+    if(taxable2 <= 250000) tax = 0;
+    else if(taxable2 <= 500000) tax = (taxable2-250000)*0.05;
+    else if(taxable2 <= 1000000) tax = 12500+(taxable2-500000)*0.20;
+    else tax = 112500+(taxable2-1000000)*0.30;
+    if(taxable2 <= 500000) tax = 0;
+  }
+  var totalTax = tax + tax*0.04;
+  var net = salary - totalTax;
+  var eff = ((totalTax/salary)*100).toFixed(1);
+  document.getElementById('tx-val').textContent = fmt(totalTax);
+  document.getElementById('tx-net').textContent = fmt(net);
+  document.getElementById('tx-eff').textContent = eff + '%';
+}
+
+// ================================================================
+// AI GENERATORS
+// ================================================================
+function shuffle(arr){ return arr.slice().sort(function(){ return Math.random()-0.5; }); }
+
+function renderAI(id, items){
+  var el = document.getElementById(id);
+  el.innerHTML = items.map(function(item, i){
+    return '<div class="ai-item"><span class="n">'+(i+1)+'.</span><span class="t">'+item+'</span></div>';
+  }).join('');
+  el.classList.add('show');
+}
+
+// YT TITLE GENERATOR
+function genYT(){
+  var topic = document.getElementById('yt-t').value.trim();
+  if(!topic){ renderAI('yt-res',['⚠️ Please enter a video topic first.']); return; }
+  var yr = new Date().getFullYear();
+  var templates = [
+    '🔥 '+topic+' – Complete Beginner\'s Guide ('+yr+')',
+    'I Tried '+topic+' for 30 Days — Here\'s What Happened',
+    topic+': Everything You Need to Know in Under 10 Minutes',
+    'Why NOBODY Talks About '+topic+' (The Untold Truth)',
+    'The ONLY '+topic+' Tutorial You\'ll Ever Need ✅',
+    'How I Mastered '+topic+' From Scratch (Step-by-Step)',
+    topic+' Explained Simply — Watch This Before It\'s Too Late',
+    topic+': Mistakes Beginners Make & How to Avoid Them',
+    'This Changed How I Think About '+topic+' Forever',
+    topic+' in '+yr+': What\'s New & What Actually Works'
+  ];
+  renderAI('yt-res', shuffle(templates).slice(0,5));
+  var prompt = 'Generate 10 more viral YouTube titles for the topic: "'+topic+'". Make them click-worthy, emotional, and optimised for high CTR.';
+  var btn = document.getElementById('yt-gpt-btn');
+  btn.href = 'https://chatgpt.com/?q=' + encodeURIComponent(prompt);
+  btn.style.display = 'flex';
+}
+
+// BUSINESS NAME GENERATOR
+function genBN(){
+  var kw = document.getElementById('bn-t').value.trim();
+  if(!kw){ renderAI('bn-res',['⚠️ Please enter a business keyword first.']); return; }
+  var w = kw.split(' ')[0];
+  var cap = w.charAt(0).toUpperCase()+w.slice(1).toLowerCase();
+  var pre = shuffle(['Nova','Zen','Peak','Flux','Aura','Vibe','Echo','Spark','Glow','Rise','Swift','Bold']);
+  var suf = shuffle(['Labs','Hub','Works','Co','Studio','HQ','Box','Nest','Bay','Forge','Pro','Plus']);
+  var names = [
+    pre[0]+cap,
+    cap+suf[0],
+    pre[1]+' '+cap,
+    cap+' '+suf[1],
+    pre[2]+cap+suf[2],
+    'The '+cap+' '+suf[3],
+    cap+'ly'
+  ];
+  renderAI('bn-res', names.slice(0,5));
+  var prompt = 'Generate 15 creative, catchy, and brandable business names for a "'+kw+'" company. Include modern, short, and memorable options with domain-friendly names.';
+  var btn = document.getElementById('bn-gpt-btn');
+  btn.href = 'https://chatgpt.com/?q=' + encodeURIComponent(prompt);
+  btn.style.display = 'flex';
+}
+
+// CAPTION GENERATOR
+function genCap(){
+  var topic = document.getElementById('cap-t').value.trim();
+  var mood = document.getElementById('cap-m').value;
+  if(!topic){ renderAI('cap-res',['⚠️ Please enter a topic first.']); return; }
+  var sets = {
+    funny:[
+      'When life gives you '+topic+', make memes out of it 😂',
+      'POV: You just discovered '+topic+' and there\'s no going back 🙃',
+      topic+' hits different at 2am, ngl 😅',
+      'Not me obsessing over '+topic+' again… 🤦',
+      topic+': 0% productive, 100% worth it 😂',
+      'My therapist: "'+topic+' can\'t hurt you" — '+topic+': 😈'
+    ],
+    motivational:[
+      'Every step with '+topic+' brings you closer to your dream. Keep going 💪',
+      topic+' today, success tomorrow. The grind never lies ⚡',
+      'Your future self will thank you for starting '+topic+' right now 🔥',
+      'Small consistent steps with '+topic+' = massive results. Trust the process ✨',
+      'They doubted you. Now let '+topic+' do the talking 💥',
+      'One decision about '+topic+' could change everything. Make it today 🎯'
+    ],
+    aesthetic:[
+      'lost in the beauty of '+topic+' 🌸✨',
+      'soft mornings and '+topic+' vibes 🌿',
+      topic+' and golden hour — a perfect match 🍂',
+      'the quiet magic of '+topic+' 💫',
+      'chasing light, living for '+topic+' 🌅',
+      'if '+topic+' was a feeling, I\'d live in it forever 🕊️'
+    ],
+    professional:[
+      'Exploring the impact of '+topic+' in today\'s landscape. Thoughts? 💼',
+      topic+' is reshaping how we work. Here\'s my take →',
+      'Excited to share my journey with '+topic+'. Let\'s connect! 🤝',
+      'Key lessons from '+topic+' every professional should know.',
+      topic+': The opportunity most people are still overlooking.',
+      'Reflecting on how '+topic+' continues to drive real results. 📈'
+    ]
+  };
+  renderAI('cap-res', shuffle(sets[mood]).slice(0,5));
+  var moodLabel = {funny:'funny and humorous',motivational:'motivational and inspiring',aesthetic:'aesthetic and poetic',professional:'professional and insightful'}[mood];
+  var prompt = 'Write 10 more '+moodLabel+' social media captions about "'+topic+'". Make them engaging, hashtag-ready, and suitable for Instagram/LinkedIn.';
+  var btn = document.getElementById('cap-gpt-btn');
+  btn.href = 'https://chatgpt.com/?q=' + encodeURIComponent(prompt);
+  btn.style.display = 'flex';
+}
+
+// PROMPT GENERATOR
+function genPR(){
+  var topic = document.getElementById('pr-t').value.trim();
+  var mode = document.getElementById('pr-m').value;
+  if(!topic){ renderAI('pr-res',['⚠️ Please enter a topic first.']); return; }
+  var sets = {
+    chatgpt:[
+      'Act as an expert in '+topic+'. Explain it step-by-step for a complete beginner using simple language and real-world examples.',
+      'Give me a detailed 7-day action plan to achieve results with '+topic+'. Include daily tasks, resources and pro tips.',
+      'What are the top 10 mistakes people make with '+topic+' and how to avoid each one? Be specific and practical.',
+      'Compare the best 5 approaches to '+topic+' in a table with pros, cons and ideal use cases.',
+      'Write a persuasive pitch for '+topic+' targeting a skeptical audience who has never heard of it.'
+    ],
+    image:[
+      'A photorealistic, ultra-detailed scene of '+topic+', cinematic lighting, 8K resolution, professional photography, award-winning composition',
+      'Digital art of '+topic+' in a futuristic cyberpunk setting, neon colors, atmospheric fog, hyper-detailed, trending on ArtStation',
+      'Watercolor illustration of '+topic+', soft pastel palette, gentle brushstrokes, whimsical and dreamy, Studio Ghibli inspired',
+      'Minimalist flat design icon of '+topic+', clean vector art, bold primary colors, geometric shapes, white background',
+      'Epic fantasy landscape featuring '+topic+', golden hour lighting, dramatic clouds, fog, concept art, by Greg Rutkowski'
+    ],
+    writing:[
+      'Write a compelling short story where '+topic+' is the central theme. Include conflict, emotion, and a surprising twist ending.',
+      'Create a detailed blog post outline for "'+topic+' in 2026" with 8 sections and 3 key bullet points each.',
+      'Write a poem about '+topic+' in the style of Pablo Neruda — emotional, vivid, full of striking metaphors.',
+      'Draft a product description for '+topic+' that converts browsers into buyers. Focus on benefits over features.',
+      'Write 5 email subject lines about '+topic+' designed for 50%+ open rates. Explain the psychology behind each.'
+    ]
+  };
+  var picks = shuffle(sets[mode]).slice(0,4);
+  renderAI('pr-res', picks);
+  // Use the first generated prompt directly as the ChatGPT query
+  var bestPrompt = picks[0];
+  var btn = document.getElementById('pr-gpt-btn');
+  btn.href = 'https://chatgpt.com/?q=' + encodeURIComponent(bestPrompt);
+  btn.style.display = 'flex';
+}
+
+// ================================================================
+// CONTACT FORM
+// ================================================================
+function submitForm(){
+  var name = document.getElementById('c-name').value.trim();
+  var email = document.getElementById('c-email').value.trim();
+  var msg = document.getElementById('c-msg').value.trim();
+  var ok = true;
+  // Reset errors
+  document.getElementById('c-nerr').style.display='none';
+  document.getElementById('c-eerr').style.display='none';
+  document.getElementById('c-merr').style.display='none';
+  document.getElementById('c-ok').style.display='none';
+  if(!name){ document.getElementById('c-nerr').style.display='block'; ok=false; }
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('c-eerr').style.display='block'; ok=false; }
+  if(msg.length < 10){ document.getElementById('c-merr').style.display='block'; ok=false; }
+  if(ok){
+    document.getElementById('c-name').value='';
+    document.getElementById('c-email').value='';
+    document.getElementById('c-msg').value='';
+    document.getElementById('c-ok').style.display='block';
+    setTimeout(function(){ document.getElementById('c-ok').style.display='none'; }, 5000);
+  }
+}
+
+// ================================================================
+// SMOOTH SCROLL for all anchor links
+// ================================================================
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var id = a.getAttribute('href');
+    if(id === '#') return;
+    var el = document.querySelector(id);
+    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+
+// ================================================================
+// ENTER KEY support for all calculator inputs
+// ================================================================
+(function(){
+  var maps = [
+    {inputs:['a-dob'], fn: calcAge},
+    {inputs:['e-p','e-r','e-t'], fn: calcEMI},
+    {inputs:['p-val','p-tot','p-pct'], fn: calcPct},
+    {inputs:['g-amt'], fn: function(){ calcGST('add'); }},
+    {inputs:['pl-cp','pl-sp'], fn: calcPL},
+    {inputs:['d-price','d-pct'], fn: calcDisc},
+    {inputs:['t-s','t-e'], fn: calcTime},
+    {inputs:['b-w','b-h'], fn: calcBMI},
+    {inputs:['si-p','si-r','si-t'], fn: calcSI},
+    {inputs:['sip-m','sip-r','sip-y'], fn: calcSIP},
+    {inputs:['ln-a','ln-r','ln-y'], fn: calcLoan},
+    {inputs:['tx-s'], fn: calcTax},
+    {inputs:['yt-t'], fn: genYT},
+    {inputs:['bn-t'], fn: genBN},
+    {inputs:['cap-t'], fn: genCap},
+    {inputs:['pr-t'], fn: genPR}
+  ];
+  maps.forEach(function(m){
+    m.inputs.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') m.fn(); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
